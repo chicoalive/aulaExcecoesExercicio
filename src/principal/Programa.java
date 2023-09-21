@@ -19,25 +19,27 @@ public class Programa {
 // criando uma lista vazia de objetos do tipo Conta
         Conta conta = new Conta();
 // For para armazenar as contas
-        try {
 
-            System.out.println("Digite os dados daconta: ");
-            System.out.print("Numero da conta: ");
-            int numero = teclado.nextInt();
-            System.out.print("Titular da conta: ");
-            teclado.nextLine();
-            String titular = teclado.nextLine();
-            System.out.print("Saldo inicial: ");
-            double saldo = teclado.nextInt();
-            System.out.print("Limite de saque: ");
-            double limiteSaque = teclado.nextDouble();
-            conta = new Conta(numero, titular, saldo, limiteSaque);
-            System.out.print("Insira o valor do saque: ");
-            double quantidade = teclado.nextDouble();
+        System.out.println("Digite os dados daconta: ");
+        System.out.print("Numero da conta: ");
+        int numero = teclado.nextInt();
+        System.out.print("Titular da conta: ");
+        teclado.nextLine();
+        String titular = teclado.nextLine();
+        System.out.print("Saldo inicial: ");
+        double saldo = teclado.nextInt();
+        System.out.print("Limite de saque: ");
+        double limiteSaque = teclado.nextDouble();
+        conta = new Conta(numero, titular, saldo, limiteSaque);
+        System.out.println("");
+        System.out.print("Insira o valor do saque: ");
+        double quantidade = teclado.nextDouble();
+// Tratando a exceção
+        try {
             conta.saque(quantidade);
-            System.out.println("Novo Saldo: " + conta.getSaldo());
-        } catch (ExcecoesConta erro) {
-            System.out.println("Erro no saque: " + erro.getMessage());
+            System.out.printf("Novo Saldo: %.2f", conta.getSaldo());
+        } catch (ExcecoesConta ex) {
+            System.out.println(ex.getMessage());
         }
 
         teclado.close();

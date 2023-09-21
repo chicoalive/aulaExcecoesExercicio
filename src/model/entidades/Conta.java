@@ -4,10 +4,10 @@ import model.excecoes.ExcecoesConta;
 
 public class Conta {
 
-    public Integer numero;
-    public String titular;
-    public Double saldo;
-    public Double limiteSaque;
+    private Integer numero;
+    private String titular;
+    private Double saldo;
+    private Double limiteSaque;
 
 // Construtores
     public Conta() {
@@ -55,10 +55,21 @@ public class Conta {
         saldo += quantidade;
     }
 
-    public void saque(double quantidade) throws ExcecoesConta {
-        if (quantidade>limiteSaque || quantidade>saldo) {
-            throw new ExcecoesConta("O valor excede o limite de retirada");
-        }
+    public void saque(double quantidade) {
+// Chamando a função aqui, já estou informando que se tive erro ele faz operação saque, se não, não faz.
+        validacaoSaque(quantidade);
         saldo -= quantidade;
     }
+// Cria uma função com as exceções
+
+    private void validacaoSaque(double quantidade) throws ExcecoesConta {
+        if (quantidade > getLimiteSaque()) {
+            throw new ExcecoesConta("Saque maior que o limite. ");
+        }
+        if (quantidade > getSaldo()) {
+            throw new ExcecoesConta("Saldo insuficiente. ");
+
+        }
+    }
+
 }
