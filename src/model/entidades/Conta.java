@@ -1,5 +1,7 @@
 package model.entidades;
 
+import model.excecoes.ExcecoesConta;
+
 public class Conta {
 
     public Integer numero;
@@ -53,7 +55,10 @@ public class Conta {
         saldo += quantidade;
     }
 
-    public void saque(double quantidade) {
+    public void saque(double quantidade) throws ExcecoesConta {
+        if (quantidade>limiteSaque || quantidade>saldo) {
+            throw new ExcecoesConta("O valor excede o limite de retirada");
+        }
         saldo -= quantidade;
     }
 }
